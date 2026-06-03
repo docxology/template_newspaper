@@ -1,0 +1,43 @@
+# template_newspaper — manuscript configuration
+#
+# This manuscript is a short, descriptive paper ABOUT the layout engine. It
+# exists so the repository pipeline's Stage 03 (infrastructure manuscript
+# renderer) produces a standard PDF for this project, exactly like the sibling
+# templates. The *newspaper* PDF itself is produced separately by scripts/ in
+# Stage 02 (see ../README.md).
+
+paper:
+  title: "The Triplicate: A Data-Driven Large-Format Newspaper Layout Engine"
+  subtitle: "Designed multi-column page layout as a reproducible-research exemplar"
+  version: "1.0.0"
+
+authors:
+  - name: "Daniel Ari Friedman"
+    orcid: "0000-0001-6232-9096"
+    email: "daniel@activeinference.institute"
+    affiliation: "Active Inference Institute"
+    corresponding: true
+
+keywords:
+  - "newspaper layout"
+  - "typography"
+  - "reportlab"
+  - "reproducible publishing"
+  - "document engineering"
+
+publication:
+  # Intended standalone GitHub repo for the double-publication (GitHub + Zenodo).
+  # The repo + Zenodo deposit are created by a maintainer via
+  # `scripts/publish_project_release.py`; `doi` / `version_doi` / `version_record`
+  # are written back here on the first deposit. Until then this exemplar ships
+  # in-repo and the generated publication table lists it as not-yet-deposited.
+  github_repository: "docxology/template_newspaper"
+  doi: "10.5281/zenodo.20533675"  # Concept DOI — stable citation
+  version_doi: "10.5281/zenodo.20533676"  # Latest Zenodo deposit
+  version_record: "https://zenodo.org/records/20533676"
+
+metadata:
+  license: "MIT"
+  language: "en"
+
+manuscript_dir: "manuscript"

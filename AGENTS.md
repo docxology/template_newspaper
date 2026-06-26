@@ -10,17 +10,28 @@ PDF (*The Triplicate*) from structured YAML. It is a canonical monorepo exemplar
 alongside `template_code_project` and `template_prose_project`, and obeys the
 same project contract.
 
+Decision memory and verifier hardening follow [`docs/rules/memory_and_decision_records.md`](../../../docs/rules/memory_and_decision_records.md): use nearby `WHY:` comments only for surprising local choices, keep volatile counts generated, and add negative controls for verifier-like gates.
+
 ## The one rule that matters
 
 **Content is data; the engine is the press.** Editions live in `content/`. If a
 change to the *newspaper's words or sections* requires editing `src/`, that is a
 bug in the abstraction — fix the engine to be driven by data instead.
 
+## Source of truth and configuration
+
+`content/` is the edition source of truth for newspaper pages, while
+`manuscript/config.yaml` and `manuscript/config.yaml.example` are the
+placeholder-safe paper, render, publication, and fork metadata surfaces for the
+template monorepo pipeline. Keep generated files under `output/` disposable, and
+document any new layout capability in data/config first so forks can replace the
+edition without editing engine code.
+
 ## Directory contract
 
 | Path | Role | Edit when… |
 |------|------|-----------|
-| `src/newspaper/` | the engine (8 modules) | adding a layout *capability* |
+| `src/newspaper/` | the engine (9 modules) | adding a layout *capability* |
 | `content/` | the edition (YAML) | changing *this paper's* content |
 | `scripts/` | Stage-02 orchestrators (preflight, figures, render) | changing the pipeline wiring |
 | `manuscript/` | descriptive paper for Stage-03 infra render | documenting the engine |
@@ -32,10 +43,10 @@ bug in the abstraction — fix the engine to be driven by data instead.
 
 This project's correctness is **visual**. After any layout or content change:
 
-1. `python scripts/10_generate_figures.py && python scripts/20_render_newspaper.py`
+1. `uv run python scripts/10_generate_figures.py && uv run python scripts/20_render_newspaper.py`
 2. Raster pages with `pdftoppm -png -r 100 output/pdf/the-triplicate.pdf /tmp/p`
    and **look at them**. Do not claim a layout works from code alone.
-3. `python -m pytest`, `mypy src/newspaper`, `ruff check src scripts tests`.
+3. `uv run pytest`, `uv run mypy src/newspaper`, `uvx ruff check src scripts tests`.
 
 `RenderResult.all_pages_fit == False` means content was dropped off a page —
 treat it as a failure, not a warning.

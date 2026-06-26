@@ -1,27 +1,46 @@
 # The Triplicate — `template_newspaper`
 
-> **Public exemplar — double-published.** This repository is a standalone
-> snapshot of the `template_newspaper` exemplar from the
-> [docxology/template](https://github.com/docxology/template) reproducible-research
-> scaffold (the canonical development home). It is archived on Zenodo:
-> concept DOI [10.5281/zenodo.20533675](https://doi.org/10.5281/zenodo.20533675)
-> (latest version [10.5281/zenodo.20533676](https://doi.org/10.5281/zenodo.20533676)).
-> Released under the MIT License.
-
-
 > A data-driven, large-format **newspaper layout engine**. It renders a complete
-> 12-page broadsheet — *The Triplicate* of Crescent City, California — to a
-> print-ready PDF from structured YAML content, using pure-Python ReportLab.
-> Swapping editions is a data edit; the engine never changes.
+> 12-page US Tabloid (11″ × 17″) edition — *The Triplicate* of Crescent City,
+> California — to a print-ready PDF from structured YAML content, using
+> pure-Python ReportLab. Broadsheet is a supported alternate trim
+> (`render.page: broadsheet`); the shipped default is tabloid. Swapping editions
+> is a data edit; the engine never changes.
 
 ![12-page contact sheet](docs/contact-sheet.png)
 
-This is a canonical exemplar project in the research-template monorepo. It is a
-sibling of [`template_code_project`](../template_code_project/) and
-[`template_prose_project`](../template_prose_project/): same directory contract
+This is a canonical exemplar sibling of [`template_code_project`](../template_code_project/)
+and [`template_prose_project`](../template_prose_project/): same directory contract
 (`src/` + `tests/` + optional `scripts/`/`manuscript/`), same orchestration
 hooks, same documentation conventions — but where those render a *manuscript*,
 this renders a *newspaper*.
+
+## Run via the template monorepo
+
+This exemplar lives at `projects/templates/template_newspaper/` in the public
+[docxology/template](https://github.com/docxology/template) repository.
+**Tests, analysis, PDF rendering, and CI all run through that monorepo** —
+clone it, run `uv sync` at the repository root, then:
+
+```bash
+./run.sh --project templates/template_newspaper --pipeline --core-only
+# or: uv run python scripts/execute_pipeline.py --project templates/template_newspaper --core-only
+```
+
+Several exemplars also publish standalone GitHub/Zenodo releases for citation;
+those mirrors are outputs of this pipeline. The monorepo remains the canonical
+build and render surface.
+
+## When to use this template
+
+Use this template when you need **data-driven, large-format print layout**:
+multi-page broadsheets/tabloids with precise column geometry,
+typography-first constraints, and strict content/engine separation (YAML
+editions in `content/`, pure-Python ReportLab engine in `src/`). If you are
+producing a research manuscript rather than a designed layout, see
+[`template_code_project`](../template_code_project/) or
+[`template_prose_project`](../template_prose_project/) instead. Full roster:
+[`projects/AGENTS.md`](../../AGENTS.md#permanent-canonical-exemplars-and-optional-search-add-on).
 
 ---
 
@@ -62,10 +81,10 @@ and section flags (`render.spot_color: true`).
 cd projects/templates/template_newspaper
 
 # 1. generate figures (halftone engravings + grayscale charts)
-python scripts/10_generate_figures.py
+uv run python scripts/10_generate_figures.py
 
 # 2. render the 12-page PDF
-python scripts/20_render_newspaper.py
+uv run python scripts/20_render_newspaper.py
 open output/pdf/the-triplicate.pdf
 ```
 
@@ -103,7 +122,7 @@ src/newspaper/
   typography.py  font registration + paragraph stylesheet
   content.py     typed content model + strict YAML loaders
   config.py      strict render configuration
-  figures.py     6 halftone engravings (Pillow) + 3 charts (Matplotlib)
+  figures.py     6 halftone engravings (Pillow) + 3 charts (Matplotlib) + 4 colour ad graphics (13 total)
   components.py  flowables: stories, drop caps, boxes, tables, pull quotes
   furniture.py   canvas-drawn nameplate, section bands, folios, column rules
   layout.py      column-frame construction + content flow
@@ -135,13 +154,20 @@ different title.
 ## Tests & quality
 
 ```bash
-python -m pytest                       # 28 tests
-python -m pytest --cov=newspaper       # ~95% coverage
-ruff check src scripts tests           # clean
-mypy src/newspaper                     # clean
+uv run pytest                          # full suite
+uv run pytest --cov=newspaper          # ~95% coverage
+uvx ruff check src scripts tests       # clean
+uv run mypy src/newspaper              # clean
 ```
 
 > *The Triplicate* is a real newspaper (founded 1879, Crescent City, CA, and
 > named for the three copies of its first press run). This is a **template
 > edition**: the masthead is homage, but every story, byline, name and event in
 > the content files is illustrative and fictional.
+
+## Template integrity
+
+- Forward backlog: [`TODO.md`](TODO.md).
+- Copy-and-customize config: [`manuscript/config.yaml.example`](manuscript/config.yaml.example).
+- Project validation: `uv run pytest projects/templates/template_newspaper/tests/ --cov=projects/templates/template_newspaper/src --cov-fail-under=90`.
+- Repo drift validation: `uv run python scripts/check_template_drift.py --strict`.

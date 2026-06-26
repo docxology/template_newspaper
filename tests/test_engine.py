@@ -32,12 +32,74 @@ def test_render_real_edition(project_root, tmp_path) -> None:
     assert out.stat().st_size > 50_000  # a real 12-page paper is not trivially small
 
 
+def test_render_edition_accepts_str_output_path(project_root, tmp_path) -> None:
+    """`render_edition` accepts a str output_path symmetrically with `build_and_render`."""
+    from newspaper.content import load_edition
+    from newspaper.config import load_newspaper_config
+
+    out = tmp_path / "triplicate.pdf"
+    edition = load_edition(project_root / "content")
+    config = load_newspaper_config(project_root / "content")
+    result = render_edition(edition, config, project_root=project_root, output_path=str(out))
+    assert out.exists()
+    assert result.page_count == 12
+
+
+def test_render_with_base14_fallback_fonts_still_fits(project_root, tmp_path) -> None:
+    """Cross-platform guarantee (no mocks): rendering with the base-14 fallback
+    Fonts (what a machine lacking the macOS faces resolves to) still produces a
+    12-page paper with no over-set — the 'structurally identical' claim, tested."""
+    from newspaper.content import load_edition
+    from newspaper.config import load_newspaper_config
+    from newspaper.typography import Fonts
+
+    base14 = Fonts(
+        display="Times-Roman",
+        display_bold="Times-Bold",
+        body="Times-Roman",
+        body_bold="Times-Bold",
+        body_italic="Times-Italic",
+        body_bolditalic="Times-BoldItalic",
+        sans="Helvetica",
+        sans_bold="Helvetica-Bold",
+    )
+    out = tmp_path / "base14.pdf"
+    edition = load_edition(project_root / "content")
+    config = load_newspaper_config(project_root / "content")
+    result = render_edition(edition, config, project_root=project_root, output_path=out, fonts=base14)
+    assert result.page_count == 12
+    assert result.all_pages_fit, f"base-14 render over-set: {result.oversets}"
+
+
 def test_build_and_render_default_path(project_root, tmp_path) -> None:
     out = tmp_path / "out.pdf"
     result = build_and_render(project_root, output_path=out)
     assert result.output_path == out
     assert out.exists()
     assert result.to_dict()["page_count"] == 12
+
+
+def test_build_and_render_auto_output_path(project_root, tmp_path) -> None:
+    """build_and_render with output_path=None derives the path from project_root.
+
+    The project_root here is a tmp copy with content/ symlinked so the edition
+    loads but output/ goes to tmp_path. We pass a synthetic project_root that
+    has a content/ subdirectory with the real edition, so no real output/ is
+    written. The test verifies that the auto-derived path is returned.
+    """
+    import shutil
+
+    # Build a minimal project root in tmp with content/ pointing at real content.
+    fake_root = tmp_path / "fake_project"
+    fake_root.mkdir()
+    # Symlink the real content directory so the edition loads.
+    (fake_root / "content").symlink_to(project_root / "content")
+    # Let build_and_render derive the output path (line 101 in engine.py).
+    result = build_and_render(fake_root, output_path=None)
+    expected = fake_root / "output" / "pdf" / "the-triplicate.pdf"
+    assert result.output_path == expected
+    assert expected.exists()
+    assert result.page_count == 12
 
 
 def test_synthetic_minimal_edition(tmp_path) -> None:

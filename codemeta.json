@@ -15,18 +15,15 @@
   ],
   "codeRepository": "https://github.com/docxology/template_newspaper",
   "dateModified": "2026-05-31",
+  "identifier": "10.5281/zenodo.20533675",
   "keywords": [
     "newspaper layout",
     "typography",
     "reportlab",
     "reproducible publishing",
-    "document engineering",
-    "large-format print"
+    "document engineering"
   ],
   "license": "https://spdx.org/licenses/MIT",
   "name": "The Triplicate: A Data-Driven Large-Format Newspaper Layout Engine",
-  "description": "Renders a 12-page large-format newspaper PDF from structured YAML content using pure-Python ReportLab, Pillow halftone engravings and Matplotlib charts.",
-  "programmingLanguage": "Python",
-  "runtimePlatform": "Python 3.10+",
   "version": "1.0.0"
 }

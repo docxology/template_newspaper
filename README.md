@@ -206,8 +206,8 @@ different title.
 
 ```bash
 uv run pytest                          # full suite
-uv run pytest --cov=newspaper          # ~99% branch coverage (gate: 90%)
-uvx ruff check src scripts tests       # clean
+uv run pytest --cov=newspaper          # gate: 90% branch coverage; live baseline: docs/_generated/COUNTS.md
+uv run ruff check src scripts tests       # clean
 uv run mypy src/newspaper              # clean
 ```
 

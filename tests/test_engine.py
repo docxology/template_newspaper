@@ -6,7 +6,7 @@ from pathlib import Path
 
 from newspaper.content import Block, Box, Edition, Figure, Page, Story
 from newspaper.config import NewspaperConfig
-from newspaper.engine import build_and_render, render_edition
+from newspaper.engine import RenderResult, build_and_render, render_edition
 
 
 def _read_pdf_page_count(path: Path) -> int:
@@ -87,7 +87,6 @@ def test_build_and_render_auto_output_path(project_root, tmp_path) -> None:
     has a content/ subdirectory with the real edition, so no real output/ is
     written. The test verifies that the auto-derived path is returned.
     """
-    import shutil
 
     # Build a minimal project root in tmp with content/ pointing at real content.
     fake_root = tmp_path / "fake_project"
@@ -100,6 +99,14 @@ def test_build_and_render_auto_output_path(project_root, tmp_path) -> None:
     assert result.output_path == expected
     assert expected.exists()
     assert result.page_count == 12
+
+
+def test_render_result_serializes_repository_relative_output(project_root) -> None:
+    """Checked render evidence must not retain a machine-local checkout path."""
+    output = project_root / "output" / "pdf" / "portable.pdf"
+    result = RenderResult(output_path=output, page_count=1)
+
+    assert result.to_dict(relative_to=project_root)["output_path"] == "output/pdf/portable.pdf"
 
 
 def test_synthetic_minimal_edition(tmp_path) -> None:
@@ -117,23 +124,28 @@ def test_synthetic_minimal_edition(tmp_path) -> None:
                 deck="A deck.",
                 byline="By A. Tester",
                 drop_cap=True,
-                body=[Block("p", "First paragraph of the lead story flows here."),
-                      Block("subhead", "A subhead"),
-                      Block("pull", "A memorable pull quote.", "Someone"),
-                      Block("p", "Second paragraph continues the report.")],
+                body=[
+                    Block("p", "First paragraph of the lead story flows here."),
+                    Block("subhead", "A subhead"),
+                    Block("pull", "A memorable pull quote.", "Someone"),
+                    Block("p", "Second paragraph continues the report."),
+                ],
                 figure=Figure(path="missing.png", caption="cap", credit="cr", height=120),
             ),
-            rail_items=[Box(kind="index", title="Inside", items=["A · 2", "B · 3"]),
-                        Box(kind="weather", title="Weather", rows=[["", "Hi", "Lo"], ["Today", "60", "50"]])],
-            main_items=[Story(headline="Second", level="secondary",
-                              body=[Block("p", "Body text.")])],
+            rail_items=[
+                Box(kind="index", title="Inside", items=["A · 2", "B · 3"]),
+                Box(kind="weather", title="Weather", rows=[["", "Hi", "Lo"], ["Today", "60", "50"]]),
+            ],
+            main_items=[Story(headline="Second", level="secondary", body=[Block("p", "Body text.")])],
         ),
         Page(
             number=2,
             template="classified",
             columns=4,
-            main_items=[Box(kind="generic", title="For Sale", items=["Item one", "Item two"]),
-                        Box(kind="display", title="House Ad", body=[Block("p", "Subscribe today.")])],
+            main_items=[
+                Box(kind="generic", title="For Sale", items=["Item one", "Item two"]),
+                Box(kind="display", title="House Ad", body=[Block("p", "Subscribe today.")]),
+            ],
         ),
     ]
     edition = Edition(nameplate="Test Times", city="Nowhere", state="CA", date="Today", pages=pages)

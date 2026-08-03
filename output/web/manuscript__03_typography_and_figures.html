@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="pandoc 3.10" />
+  <meta name="generator" content="pandoc 3.10.1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>03_typography_and_figures.md.web</title>
   <style>
@@ -41,7 +41,6 @@
       body {
         background-color: transparent;
         color: black;
-        font-size: 12pt;
       }
       p, h2, h3 {
         orphans: 3;
@@ -188,8 +187,8 @@ always-available base-14 fonts when a face is missing. Registration is
 best-effort and never fatal: a checkout on a machine without the macOS
 supplemental fonts still renders a structurally identical paper in Times
 and Helvetica. Only the typography module names a font; every other
-module refers to four logical roles (display, body, sans, and their bold
-and italic variants), so a change of typeface touches one file.</p>
+module refers to three logical roles (display, body, sans, and their
+bold and italic variants), so a change of typeface touches one file.</p>
 <p>A subtle lesson is recorded in the code: the bold weight inside a
 <code>.ttc</code> font collection is at a face-specific subfont index.
 Didot’s collection orders its faces Regular, Italic, Bold; an early

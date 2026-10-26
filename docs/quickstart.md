@@ -2,18 +2,24 @@
 
 ## Prerequisites
 
-The workspace `.venv` (managed by `uv` at the repo root) already provides
-`reportlab`, `Pillow`, `matplotlib` and `pyyaml`. No system tools are required
-to produce the newspaper PDF.
+```bash
+uv sync --extra dev
+```
+
+provides `reportlab`, `Pillow`, `matplotlib` and `pyyaml` (plus `pytest` for the
+suite); in the monorepo the workspace `.venv` already provides them. No system
+tools are required to produce the newspaper PDF.
 
 ## Render the paper
 
 ```bash
-cd projects/templates/template_newspaper
-python scripts/10_generate_figures.py     # halftone scenes + charts → output/figures/
-python scripts/20_render_newspaper.py      # 12-page PDF → output/pdf/the-triplicate.pdf
+uv run python scripts/10_generate_figures.py     # halftone scenes + charts → output/figures/
+uv run python scripts/20_render_newspaper.py      # 12-page PDF → output/pdf/the-triplicate.pdf
 open output/pdf/the-triplicate.pdf
 ```
+
+Run these from this repository's root; in the monorepo run them after
+`cd projects/templates/template_newspaper`.
 
 Or in one call, programmatically:
 
@@ -35,7 +41,7 @@ open /tmp/triplicate-01.png
 ## Run via the repository orchestrator
 
 ```bash
-# from the repo root
+# from the monorepo checkout root
 ./run.sh --project templates/template_newspaper --pipeline
 ```
 

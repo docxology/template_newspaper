@@ -127,9 +127,12 @@ and section flags (`render.spot_color: true`).
 
 ## Quick start
 
+In the monorepo, `cd projects/templates/template_newspaper` first and run the
+same commands from the workspace `.venv`. Standalone, `uv sync --extra dev`
+creates the environment:
+
 ```bash
-# From the repository root, with the workspace .venv active:
-cd projects/templates/template_newspaper
+uv sync --extra dev
 
 # 1. generate figures (halftone engravings + grayscale charts)
 uv run python scripts/10_generate_figures.py
@@ -145,11 +148,12 @@ Or render programmatically:
 from pathlib import Path
 from newspaper.engine import build_and_render
 
-result = build_and_render(Path("projects/templates/template_newspaper"))
+result = build_and_render(Path("."))   # the project root (monorepo: projects/templates/template_newspaper)
 print(result.page_count, result.all_pages_fit)   # 12 True
 ```
 
-Run it through the repository orchestrator like any other project:
+Run it through the repository orchestrator like any other project (monorepo
+checkout):
 
 ```bash
 ./run.sh --project templates/template_newspaper --pipeline
@@ -206,7 +210,7 @@ different title.
 
 ```bash
 uv run pytest                          # full suite
-uv run pytest --cov=newspaper          # gate: 90% branch coverage; live baseline: docs/_generated/COUNTS.md
+uv run pytest --cov=newspaper          # gate: 90% branch coverage; last recorded run: output/reports/test_results.md
 uv run ruff check src scripts tests       # clean
 uv run mypy src/newspaper              # clean
 ```
@@ -220,8 +224,8 @@ uv run mypy src/newspaper              # clean
 
 - Forward backlog: [`TODO.md`](TODO.md).
 - Copy-and-customize config: [`manuscript/config.yaml.example`](manuscript/config.yaml.example).
-- Project validation: `uv run pytest projects/templates/template_newspaper/tests/ --cov=projects/templates/template_newspaper/src --cov-fail-under=90`.
-- Repo drift validation: `uv run python scripts/audit/check_template_drift.py --strict`.
+- Standalone validation: `uv run pytest tests/ --cov=src --cov-fail-under=90`.
+- Monorepo validation (from the `docxology/template` checkout): `uv run pytest projects/templates/template_newspaper/tests/ --cov=projects/templates/template_newspaper/src --cov-fail-under=90`; repo drift: `uv run python scripts/audit/check_template_drift.py --strict`.
 
 <!-- foam-orphan-nav:start (hand-maintained: links sub-docs so they are reachable; no generator refreshes or validates this block) -->
 

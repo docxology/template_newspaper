@@ -2,7 +2,7 @@
 
 | Doc | What it covers |
 |-----|----------------|
-| [quickstart.md](quickstart.md) | Render the paper in three commands |
+| [quickstart.md](quickstart.md) | Install, render and inspect the paper |
 | [architecture.md](architecture.md) | Drawn-furniture / flowed-body design; module map |
 | [syntax_guide.md](syntax_guide.md) | Complete `content/` YAML schema |
 | [forking_guide.md](forking_guide.md) | Turn *The Triplicate* into your own paper |

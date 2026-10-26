@@ -215,6 +215,11 @@ uv run ruff check src scripts tests       # clean
 uv run mypy src/newspaper              # clean
 ```
 
+> `ruff` and `mypy` are not declared by this checkout — in the template monorepo
+> they come from the workspace dev toolchain and are configured by the monorepo
+> root `pyproject.toml`. Run them from that workspace (or install them
+> separately) to reproduce the workspace lint and type checks here.
+
 > *The Triplicate* is a real newspaper (founded 1879, Crescent City, CA, and
 > named for the three copies of its first press run). This is a **template
 > edition**: the masthead is homage, but every story, byline, name and event in

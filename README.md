@@ -9,8 +9,8 @@
 
 ![12-page contact sheet](docs/contact-sheet.png)
 
-This is a canonical exemplar sibling of [`template_code_project`](../template_code_project/)
-and [`template_prose_project`](../template_prose_project/): same directory contract
+This is a canonical exemplar sibling of [`template_code_project`](https://github.com/docxology/template/blob/main/projects/templates/template_code_project)
+and [`template_prose_project`](https://github.com/docxology/template/blob/main/projects/templates/template_prose_project): same directory contract
 (`src/` + `tests/` + optional `scripts/`/`manuscript/`), same orchestration
 hooks, same documentation conventions — but where those render a *manuscript*,
 this renders a *newspaper*.
@@ -22,9 +22,9 @@ multi-page broadsheets/tabloids with precise column geometry,
 typography-first constraints, and strict content/engine separation (YAML
 editions in `content/`, pure-Python ReportLab engine in `src/`). If you are
 producing a research manuscript rather than a designed layout, see
-[`template_code_project`](../template_code_project/) or
-[`template_prose_project`](../template_prose_project/) instead. Full roster:
-[`projects/AGENTS.md`](../../AGENTS.md#permanent-canonical-exemplars).
+[`template_code_project`](https://github.com/docxology/template/blob/main/projects/templates/template_code_project) or
+[`template_prose_project`](https://github.com/docxology/template/blob/main/projects/templates/template_prose_project) instead. Full roster:
+[`projects/AGENTS.md`](https://github.com/docxology/template/blob/main/projects/AGENTS.md#permanent-canonical-exemplars).
 
 ## Publication and rendering
 

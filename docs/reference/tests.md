@@ -1,8 +1,7 @@
 # tests/
 
 ```bash
-python -m pytest                  # full suite
-python -m pytest --cov=newspaper  # ~99% branch coverage (gate 90%, see pyproject.toml)
+uv run pytest --cov=src --cov-fail-under=90
 ```
 
 | File | Covers |
@@ -18,5 +17,5 @@ python -m pytest --cov=newspaper  # ~99% branch coverage (gate 90%, see pyprojec
 | `test_robustness.py` | malformed-input handling, HTML escaping, overset detection |
 | `test_engine.py` | integration: render the real edition + a synthetic one to PDF |
 
-Logic is tested here; **appearance** is verified visually (see
-`../docs/testing_philosophy.md`).
+Logic is tested here; **appearance** is verified visually (see the
+[testing guide](../testing_philosophy.md)).

@@ -21,5 +21,5 @@ renders them. No code lives here.
 
 ## See Also
 
-- [`README.md`](README.md) — quick reference and page roster
+- [`README.md`](../../docs/reference/edition_pages.md) — quick reference and page roster
 - [`../AGENTS.md`](../AGENTS.md) — edition-level content contract

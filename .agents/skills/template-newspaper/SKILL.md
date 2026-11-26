@@ -9,8 +9,8 @@ tags: [exemplar, layout, reportlab, typography]
 
 # template-newspaper
 
-Project-scoped skill for the in-repo exemplar at
-`projects/templates/template_newspaper/`. Load this when working inside the project.
+Project-scoped skill for the standalone newspaper exemplar. Load this when
+working in the project.
 
 ## When to Use
 
@@ -23,12 +23,12 @@ Project-scoped skill for the in-repo exemplar at
 ## Quick Reference
 
 ```bash
-# From the repository root
-uv run pytest projects/templates/template_newspaper/tests --cov=projects/templates/template_newspaper/src --cov-fail-under=90
-uv run python scripts/pipeline/stage_02_analysis.py --project templates/template_newspaper
-uv run python scripts/pipeline/stage_03_render.py --project templates/template_newspaper
-uv run python scripts/pipeline/stage_04_validate.py --project templates/template_newspaper
-uv run python scripts/pipeline/stage_05_copy.py --project templates/template_newspaper
+# From the standalone repository root
+uv sync --locked --extra dev
+uv run pytest --cov=src --cov-fail-under=90
+uv run python scripts/00_preflight.py
+uv run python scripts/10_generate_figures.py
+uv run python scripts/20_render_newspaper.py
 ```
 
 ## Pitfalls
@@ -39,12 +39,11 @@ uv run python scripts/pipeline/stage_05_copy.py --project templates/template_new
   computation.
 - **Outputs are disposable.** Never hand-edit `output/` — regenerate from
   source and config.
-- **Run from the repo root.** Commands assume the template monorepo root
-  as working directory unless the child `AGENTS.md` states otherwise.
+- **Render the manuscript from Template.** Use the [pinned runner and registration instructions](../../../docs/quickstart.md#render-the-descriptive-manuscript).
 
 ## Cross-refs
 
 - Project contract: [`AGENTS.md`](../../../AGENTS.md)
 - README: [`README.md`](../../../README.md)
-- TODO: [`TODO.md`](../../../TODO.md)
-- Exemplar roster: [`projects/AGENTS.md`](../../../../../AGENTS.md)
+- TODO: [`TODO.md`](../../../docs/TODO.md)
+- Exemplar roster: [`projects/AGENTS.md`](https://github.com/docxology/template/blob/87704feae0a4490ef7dad9c931d268e8c30273c2/projects/AGENTS.md)

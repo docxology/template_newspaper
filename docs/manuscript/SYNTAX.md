@@ -11,4 +11,4 @@ newspaper edition. It follows the shared monorepo manuscript conventions:
 - Standard Markdown: ATX headings (`#`, `##`), one `#` (H1) per section file.
 
 The **newspaper edition** content is *not* here — it lives as YAML under
-`../content/`. See `../docs/syntax_guide.md` for the edition content schema.
+`../../content/`. See the [edition schema](../syntax_guide.md).

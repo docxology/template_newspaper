@@ -21,7 +21,7 @@ masthead:
 ## 2. Rewrite the pages
 
 Each file in `content/pages/` is a self-describing page. Replace the stories,
-boxes and figures with your own (see `docs/syntax_guide.md`). To change the
+boxes and figures with your own (see the [edition schema](syntax_guide.md)). To change the
 number of pages, edit the `pages:` list in `edition.yaml` — the engine adapts to
 any count.
 

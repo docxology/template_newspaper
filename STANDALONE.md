@@ -10,76 +10,10 @@
 - Stable concept DOI: [10.5281/zenodo.20533675](https://doi.org/10.5281/zenodo.20533675)
 - Latest deposited version DOI: [10.5281/zenodo.20932039](https://zenodo.org/records/20932039)
 - Additional declared locations: [github_pages](https://docxology.github.io/template_newspaper/), [huggingface_hub](https://huggingface.co/datasets/ActiveInference/template_newspaper), [ipfs_pinata](https://gateway.pinata.cloud/ipfs/QmUsept2d9X3sz42whTgEGM9TjdxjzSqxnuyPCbu3pPwku), [netlify](https://6a4441f8d6dc10153d77788d--tranquil-kleicha-0c9203.netlify.app), [osf](https://osf.io/tzwf8/), [pypi](https://test.pypi.org/project/template-newspaper/1.0.2/), [software_heritage](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/docxology/template_newspaper)
-- Metadata source: [`manuscript/config.yaml`](manuscript/config.yaml); citation sidecars live at the project root.
+- Metadata source: [`docs/manuscript/config.yaml`](docs/manuscript/config.yaml); citation sidecars live at the project root.
 
 Additional locations are config-declared publication evidence; the central index records whether external GitHub and Zenodo checks were refreshed.
 
 <!-- END:PUBLICATION_INDEX -->
 
-## Purpose
-
-`template_newspaper` is a data-driven, large-format newspaper layout exemplar
-with content YAML, deterministic figure generation, and a tested ReportLab
-layout engine.
-
-## Copy This When
-
-Use it when a fork needs print-layout machinery, page furniture, ads, weather or
-market panels, and a raster-verifiable PDF edition.
-
-## Clean Copy Command
-
-From the template repository root:
-
-```bash
-uv run python scripts/audit/copy_exemplar.py \
-  --source templates/template_newspaper \
-  --dest projects/working/my_newspaper \
-  --new-name my_newspaper
-```
-
-Fallback when the helper is unavailable:
-
-```bash
-rsync -a \
-  --exclude '.venv/' --exclude '.pytest_cache/' --exclude '.ruff_cache/' \
-  --exclude 'htmlcov/' --exclude 'output/' --exclude 'rendered/' --exclude '*.egg-info/' \
-  projects/templates/template_newspaper/ projects/working/my_newspaper/
-```
-
-## Required Post-Fork Edits
-
-- Update `manuscript/config.yaml`, `domain_profile.yaml`, `experiment_plan.yaml`,
-  `CITATION.cff`, `.zenodo.json`, and `codemeta.json`.
-- Replace `content/`, masthead settings, ad inventory, and local fixtures before
-  presenting a fork as a real publication.
-- Regenerate figures and the final PDF after changing content or trim size.
-
-## Validation Commands
-
-From the copied project root:
-
-```bash
-uv run pytest tests/ --cov=src --cov-fail-under=90
-uv run python scripts/10_generate_figures.py
-uv run python scripts/20_render_newspaper.py
-```
-
-For the public exemplar from the template repository root:
-
-```bash
-uv run pytest projects/templates/template_newspaper/tests/ \
-  --cov=projects/templates/template_newspaper/src --cov-fail-under=90
-```
-
-## Intentional Non-Standalone Dependencies
-
-The layout engine and project tests are project-local. The script bootstrap can
-use the template infrastructure logger when present, but falls back for ordinary
-project execution. Monorepo rendering/copy stages remain optional polish.
-
-## What Not To Claim
-
-Do not claim the fictional edition is a real newspaper issue. Do not claim
-layout quality after content changes until the PDF is rendered and page rasters
-are inspected for overset text, missing assets, and geometry regressions.
+See the [forking guide](docs/forking_guide.md) and the [build and validation instructions](docs/quickstart.md).

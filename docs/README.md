@@ -2,6 +2,10 @@
 
 | Doc | What it covers |
 |-----|----------------|
+| [Edition](edition.md) | Specimen page roster and layout |
+| [Manuscript](manuscript/README.md) | Engine paper, sections, bibliography, and configuration |
+| [Publication metadata](publishing.md) | Regenerate the status block for the canonical configuration |
+| [Backlog](TODO.md) | Planned maintenance |
 | [quickstart.md](quickstart.md) | Install, render and inspect the paper |
 | [architecture.md](architecture.md) | Drawn-furniture / flowed-body design; module map |
 | [syntax_guide.md](syntax_guide.md) | Complete `content/` YAML schema |
@@ -14,6 +18,14 @@
 | [faq.md](faq.md) | Common questions |
 | [agent_instructions.md](agent_instructions.md) | Rules for AI agents editing this project |
 
-See the project [README](../README.md) for the overview and the page roster.
+See the project [README](../README.md) for the overview.
 
 ![front page](front-page.png)
+
+## Contributor references
+
+- [Edition inputs](reference/edition_inputs.md) and [page files](reference/edition_pages.md)
+- [Claim ledger](reference/claim_ledger.md)
+- [Scripts](reference/scripts.md) and [script conventions](reference/script_conventions.md)
+- [Engine source](reference/source.md) and [source style](reference/source_style.md)
+- [Test suite](reference/tests.md) and [test patterns](reference/test_patterns.md)

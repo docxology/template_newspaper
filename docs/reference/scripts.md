@@ -16,5 +16,5 @@ python scripts/10_generate_figures.py
 python scripts/20_render_newspaper.py            # fails on over-set by default; --allow-overset to downgrade to a warning
 ```
 
-They run standalone (dev) and under the monorepo orchestrator,
-`./run.sh --project templates/template_newspaper --pipeline`.
+See the [build guide](../quickstart.md) for locked standalone setup and
+registration in the pinned Template checkout.

@@ -22,6 +22,6 @@ render is testable without shell logic.
 
 ## See Also
 
-- [`../../content/README.md`](../../content/README.md) — the edition this engine renders
-- [`../../manuscript/02_engine_architecture.md`](../../manuscript/02_engine_architecture.md) — architecture and method
-- [`AGENTS.md`](AGENTS.md) — source-layer editing rules
+- [`../../content/README.md`](edition_inputs.md) — the edition this engine renders
+- [`../../docs/manuscript/02_engine_architecture.md`](../manuscript/02_engine_architecture.md) — architecture and method
+- [`AGENTS.md`](../../src/newspaper/AGENTS.md) — source-layer editing rules

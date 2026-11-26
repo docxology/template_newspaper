@@ -4,7 +4,7 @@
 # exists so the repository pipeline's Stage 03 (infrastructure manuscript
 # renderer) produces a standard PDF for this project, exactly like the sibling
 # templates. The *newspaper* PDF itself is produced separately by scripts/ in
-# Stage 02 (see ../README.md).
+# Stage 02 (see ../rendering_pipeline.md).
 
 paper:
   title: "The Triplicate: A Data-Driven Large-Format Newspaper Layout Engine"
@@ -59,4 +59,4 @@ render:
     docx: false
     epub: false
 
-manuscript_dir: "manuscript"
+manuscript_dir: "docs/manuscript"

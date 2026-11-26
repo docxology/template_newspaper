@@ -1,7 +1,7 @@
 # `template_newspaper/content/pages/`
 
 One YAML file per printed page, listed in print order by
-[`../edition.yaml`](../edition.yaml). These files are pure data — the layout
+[`../edition.yaml`](../../content/edition.yaml). These files are pure data — the layout
 engine in [`../../src/newspaper/`](../../src/newspaper/) reads them; they contain
 no code. Edit them to change the paper.
 
@@ -28,6 +28,6 @@ error naming the offending value and the allowed set.
 
 ## See Also
 
-- [`../README.md`](../README.md) — the edition as data
-- [`../AGENTS.md`](../AGENTS.md) — content editing rules
-- [`../../docs/syntax_guide.md`](../../docs/syntax_guide.md) — the complete page schema
+- [`../README.md`](edition_inputs.md) — the edition as data
+- [`../AGENTS.md`](../../content/AGENTS.md) — content editing rules
+- [`../../docs/syntax_guide.md`](../syntax_guide.md) — the complete page schema

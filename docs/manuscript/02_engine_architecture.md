@@ -65,6 +65,6 @@ and covered end-to-end by the test suite:
 4. **Emit** — `engine` registers fonts, renders each page to the canvas, and
    writes the PDF alongside a machine-readable render report.
 
-Every step is pure-data-in, artifact-out and seeded deterministically, so the
-same edition manifest always yields a byte-identical paper — the reproducibility
-contract verified in `tests/` and described in `04_reproducibility.md`.
+The edition build is deterministic for the same inputs, fonts, and
+dependency versions. The engine tests compare separate renders for byte
+equality, as described in `04_reproducibility.md`.

@@ -25,12 +25,11 @@ any `figure`/`ad graphic` `path` can point at an RGB PNG (the shipped
 `ad_bakery`/`ad_realty`/`ad_grocery`/`ad_festival` graphics are procedural color
 examples), the display-ad system (`components.ad_flowables`) is fully color-capable
 (background tint, accent, border), and `render.spot_color: true` prints the
-nameplate and section labels in a spot color. See `docs/syntax_guide.md` →
-"Color & spot color".
+nameplate and section labels in a spot color. See [Color and spot color](syntax_guide.md#color--spot-color).
 
 **Where does the newspaper PDF come from in the pipeline?**
 Stage 02 (analysis), via `scripts/`. Stage 03 separately renders the descriptive
-`manuscript/`. See `rendering_pipeline.md`.
+`docs/manuscript/`. See the [rendering pipeline](rendering_pipeline.md).
 
 **How do I add a new figure type?**
 Add a builder to `src/newspaper/figures.py` and register it in `generate_all`;

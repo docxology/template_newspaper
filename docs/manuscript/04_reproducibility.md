@@ -8,8 +8,8 @@ validates; `10_generate_figures.py` writes the halftone scenes and charts to
 `output/pdf/the-triplicate.pdf` and emits a machine-readable render report
 (`output/data/render_report.json`) plus a human summary. The render is
 deterministic — the canvas is opened in ReportLab's `invariant` mode and the
-figures are drawn from fixed procedural recipes — so the same content yields the
-same bytes.
+figures are drawn from fixed procedural recipes. Byte-for-byte comparison uses
+the same content, fonts, and dependency versions.
 
 Correctness is established two ways. A `pytest` suite exercises the pure logic
 (geometry, configuration, content loaders, typography, figure generation) and
@@ -18,8 +18,7 @@ exactly twelve pages at the correct trim with no over-set page. Because the
 remaining correctness of a *layout* is visual, the development loop rasterizes
 each page and inspects it; the project's agent guidance makes that visual check
 mandatory after any layout change. The engine is type-checked with mypy and
-linted with ruff, and the test suite reports roughly ninety-nine percent line
-coverage.
+linted with ruff, and the test suite enforces a ninety-percent coverage floor.
 
 Every quantitative claim in this project — the page count, the trim dimensions,
 the figure count — is recorded in `data/claim_ledger.yaml` against the artifact

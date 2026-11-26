@@ -32,8 +32,8 @@ intentional placeholders, never crashes.
 
 ### Fonts differ on another machine
 Expected. Didot/Georgia are macOS supplemental fonts; on machines without them
-the engine falls back to Times/Helvetica. The layout is identical; only the
-typeface changes.
+the engine falls back to Times/Helvetica. Metrics can change line breaks,
+so inspect the raster pages in the target environment.
 
 ### `discover_projects` doesn't list the project
 It requires `src/` (with `.py` files) and `tests/`. Confirm both exist and that

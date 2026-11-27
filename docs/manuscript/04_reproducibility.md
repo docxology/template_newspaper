@@ -1,4 +1,4 @@
-# Reproducibility
+# Reproducibility {#sec:reproducibility}
 
 The artifact is produced by a deterministic, three-step chain that the
 repository pipeline runs as Stage-02 analysis scripts, in lexicographic order:

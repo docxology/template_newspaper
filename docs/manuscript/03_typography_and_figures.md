@@ -1,4 +1,4 @@
-# Typography and Figures
+# Typography and Figures {#sec:typography-and-figures}
 
 A newspaper's voice is its type. The engine registers, when present, the elegant
 text faces a real paper would license — Didot for the nameplate and display
@@ -7,8 +7,9 @@ and falls back to ReportLab's always-available base-14 fonts when a face is
 missing. Registration is best-effort and never fatal: a checkout on a machine
 without the macOS supplemental fonts still renders a paper in Times and
 Helvetica using the same layout rules. Font metrics can change line breaks.
-Only the typography module names a font. Every
-and italic variants), so a change of typeface touches one file.
+Only the typography module names a font. The rest of the engine uses `Fonts`
+roles such as the bold and italic body variants, so a change of typeface touches
+one file.
 
 A subtle lesson is recorded in the code: the bold weight inside a `.ttc` font
 collection is at a face-specific subfont index. Didot's collection orders its

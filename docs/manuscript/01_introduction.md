@@ -23,5 +23,6 @@ different paper — a school gazette, a conference daily, a neighborhood
 broadsheet — is an edit to the data, not the code.
 
 The remainder of this manuscript describes the engine's architecture
-(Section 2), its typography and figure generation (Section 3), and how the
-artifact is produced and verified reproducibly (Section 4).
+([@sec:engine-architecture]), its typography and figure generation
+([@sec:typography-and-figures]), and how the artifact is produced and verified
+reproducibly ([@sec:reproducibility]).

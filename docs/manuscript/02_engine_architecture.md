@@ -1,4 +1,4 @@
-# Engine Architecture
+# Engine Architecture {#sec:engine-architecture}
 
 The engine is nine small modules, each with one responsibility.
 
